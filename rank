@@ -1,0 +1,45 @@
+import java.util.PriorityQueue;
+import java.util.Arrays;
+class F implements Comparable {
+  int compareTo(Object other) {
+    F o = (F)other;
+    return v.compareTo(o.v);
+  }
+  F(String as, int av) {
+    v = av;
+    s = as;
+  }
+  Integer v;
+  String s;
+}
+
+void uniqueOffer(ArrayList<F> list, String s) {
+  for (F f : list) {
+    if (f.s.equals(s)) {
+      f.v++;
+      return;
+    }
+  }
+  list.add(new F(s, 1));
+}
+
+F[] sorted(ArrayList<F> list) {
+  F[] fs = (F[])list.toArray(new F[list.size()]);
+  Arrays.sort(fs);
+  return fs;
+}
+
+void setup() {
+}
+
+void draw() {
+}
+
+ArrayList<F> fs = new ArrayList<F>();
+void keyPressed() {
+  uniqueOffer(fs, key+"");
+  for (F f : sorted(fs)) {
+    println(f.s + ":" + f.v);
+  }
+  println("=============");
+}
